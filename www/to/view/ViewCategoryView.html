@@ -1,0 +1,100 @@
+<!-- START ViewCategoryView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+	<style>
+		section > div {
+			padding: 4px 10px 4px 10px;
+			vertical-align: middle;
+		}
+	</style>
+	<ion-content>
+		<article
+				ng-if="vm.loaded"
+				>
+			<section>
+				<label>Name:</label>
+
+				<div>{{::vm.category.name}}</div>
+			</section>
+			<section>
+				<label>Priority:</label>
+
+				<div>
+					<i
+							ng-class="::vm.getCategoryPriorityClass(vm.category)"
+							class="org-icon"></i>
+						<span
+								ng-bind-html="::vm.getCategoryPriority()"
+								></span>
+				</div>
+			</section>
+			<!--
+			<section>
+				<label>Coach:</label>
+
+				<div>
+					<i
+							ng-class="::vm.getCategoryCoachingClass(vm.category)"
+							class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="::vm.getCoachingLabel()"
+								></span>
+				</div>
+			</section>
+
+			<!-- TODO: work here next -->
+			<!--
+			Name
+			Priority
+			numCanceledActions:number;
+			numCompleteActions:number;
+			numReadyAndInProgressActions:number;
+			numPlannedActions:number;
+			Total Num actions
+			Created date
+			Help level
+			Last modified date
+			Average completion time
+			Average importance of actions
+			Average
+			-->
+
+			<nav
+					class="row"
+					>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewPlans()"
+						>
+					Plan
+				</button>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewKanban()"
+						>
+					Act
+				</button>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewEisenhower()"
+						>
+					Track
+				</button>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewMotivations()"
+						>
+					Reasons
+				</button>
+			</nav>
+			<nav class="row">
+				<button
+						class="col button button-positive"
+						ng-click="vm.edit()"
+						>
+					Edit
+				</button>
+			</nav>
+		</article>
+	</ion-content>
+</ion-view>
+<!-- END ViewCategoryView -->

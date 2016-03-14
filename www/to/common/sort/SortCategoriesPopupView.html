@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="to/common/sort/SortPopupViewStyles.css">
+<ion-radio ng-model="vm.sorter.pickState.sortBy" ng-value="'NAME'">
+	<i class="sort-radio-icon icon-quill"> </i>
+
+	<div class="sort-radio-label">Name</div>
+</ion-radio>
+<ion-radio ng-model="vm.sorter.pickState.sortBy" ng-value="'PRIORITY'">
+	<i class="sort-radio-icon icon-list-numbered"></i>
+
+	<div class="sort-radio-label">Priority</div>
+</ion-radio>
+<ion-radio ng-model="vm.sorter.pickState.sortBy" ng-value="'NUM_PLANNED'">
+	<i class="sort-radio-icon fa fa-briefcase"></i>
+
+	<div class="sort-radio-label"># Planned Actions</div>
+</ion-radio>
+<ion-radio ng-model="vm.sorter.pickState.sortBy" ng-value="'NUM_READY'">
+	<i class="sort-radio-icon ion-clipboard"></i>
+
+	<div class="sort-radio-label"># Ready Actions</div>
+</ion-radio>
+<ion-radio ng-model="vm.sorter.pickState.sortBy" ng-value="'NUM_IN_PROGRESS'">
+	<i class="sort-radio-icon ion-hammer"></i>
+
+	<div class="sort-radio-label"># In Progress Actions</div>
+</ion-radio>
+<ion-toggle ng-model="vm.sorter.pickState.ascending" toggle-class="toggle-calm">
+	<div
+			ng-bind-html="vm.sorter.getSortOrderLabel()"
+			></div>
+</ion-toggle>

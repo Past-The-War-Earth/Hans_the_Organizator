@@ -1,0 +1,100 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		.bar-subheader {
+			border-color: #efadff;
+		}
+		.content .item {
+			border-color: #efadff;
+		}
+		.item-icon-right .icon-accessory {
+			color: #efadff;
+		}
+	</style>
+	<!-- Pick a action in this view -->
+	<div class="bar bar-subheader">
+		<button
+				id="sort-button"
+				class="button"
+				ng-click="vm.sorter.showSortPopup()"
+				>
+			<i
+					class="fa fa-lg"
+					ng-class="vm.sorter.getSortOrderStyle()"
+					></i>
+			<span
+					ng-bind-html="vm.sorter.getSortSymbol()"
+					>
+			</span>
+		</button>
+		<div>
+			<input
+					ng-model="searchText"
+					type="search"
+					placeholder="Search Plans"
+					>
+		</div>
+		<button
+				class="org-mid-button left-button"
+				ng-click="vm.trackActions()"
+				>
+			<i
+					class="fa fa-compass fa-lg"
+					></i>
+		</button>
+		<button
+				class="org-mid-button left-button"
+				ng-click="vm.addAction()"
+				>
+			<i
+					class="fa fa-plus fa-lg"
+					></i>
+		</button>
+	</div>
+	<ion-content class="has-header content">
+		<div class="under-subheader"></div>
+		<ion-list>
+			<ion-item
+					class="item-remove-animate item-icon-right"
+					ng-repeat="action in vm.actions track by action._id | filter:searchText"
+					type="item-text-wrap"
+					ng-click="vm.selectAction(action)"
+					>
+				<section class="urgency-n-priority">
+					<i
+							ng-class="::vm.getPriorityClass(action)"
+							class="priority"></i>
+					<i
+							ng-class="::vm.getUrgencyClass(action)"
+							class="urgency fa fa-lg"></i>
+				</section>
+				<h2>{{::action.phrase}}</h2>
+				<section
+						ng-if="::action.categoryIds.length"
+						class="fa fa-folder-open-o">:
+					<i
+							ng-repeat="categoryId in ::action.categoryIds"
+							ng-class="::vm.priority.getClass(categoryId)"
+							></i>
+				</section>
+				<section
+						ng-if="::action.motivationIds.length"
+						class="fa fa-dot-circle-o">:
+					<i
+							ng-repeat="motivationId in ::action.motivationIds"
+							ng-class="::vm.impact.getClass(motivationId)"
+							></i>
+				</section>
+				<!-- FIXME: do one-time binding via array size manipulation at sort -->
+				<span class="sorted-property"
+				      ng-bind-html="vm.sorter.getSortedProperty(action)"
+						></span>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+
+				<ion-option-button class="button-assertive" ng-click="vm.readyAction(action)">
+					Ready
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,51 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angular-ui-router/angular-ui-router.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "cordova-ionic/cordova-ionic.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "cordova-ionic/plugins/keyboard.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-cookies.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/angular-sanitize.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "angularjs/legacy/angular-scenario-1.2.d.ts": {
+      "commit": "be0b6b394f77a59e192ad7cfec18078706e44db5"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    },
+    "d3/d3.d.ts": {
+      "commit": "00e3487ce11bca50494ccb2ba18508df4edc405a"
+    }
+  }
+}

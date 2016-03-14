@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link rel="stylesheet" href="lib/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="lib/icomoon/style.css">
+  <link rel="stylesheet" href="img/organizator/style.css">
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/rsvp/rsvp.js"></script>
+  <script src="lib/pouchdb/dist/pouchdb.js"></script>
+  <script src="lib/rxjs/dist/rx.all.js"></script>
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/autosize/dist/autosize.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
+  <script src="lib/angular-pouchdb/angular-pouchdb.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+  <!-- <script src="cordova.js"></script> -->
+
+  <script src="lib/d3/d3.js"></script>
+  <!-- your app's js -->
+  <script src="to/polyfills.js"></script>
+  <script src="to/common/Constants.js"></script>
+  <script src="to/app.js"></script>
+  <script src="to/MainController.js"></script>
+  <script src="to/common/Component.js"></script>
+  <script src="to/common/EventBus.js"></script>
+  <script src="to/common/Logger.js"></script>
+  <script src="to/common/DisplayUtils.js"></script>
+  <script src="to/storage/CachedRepository.js"></script>
+  <script src="to/storage/ActionRepository.js"></script>
+  <script src="to/storage/ArchiveRepository.js"></script>
+  <script src="to/storage/BookmarkRepository.js"></script>
+  <script src="to/storage/CategoryRepository.js"></script>
+  <script src="to/storage/MotivationRepository.js"></script>
+  <script src="to/common/ActionsController.js"></script>
+  <script src="to/common/ActionController.js"></script>
+  <script src="to/common/EditableActionController.js"></script>
+  <script src="to/common/CategoryController.js"></script>
+  <script src="to/common/MotivationController.js"></script>
+  <script src="to/common/UnifiedController.js"></script>
+  <script src="to/common/sort/Sorter.js"></script>
+  <script src="to/common/sort/ActionSorter.js"></script>
+  <script src="to/common/sort/CategorySorter.js"></script>
+  <script src="to/common/sort/MotivationSorter.js"></script>
+
+  <script src="to/track/BaseEisenhowerController.js"></script>
+  <script src="to/chart/ChartCommons.js"></script>
+  <script src="to/act/ActionService.js"></script>
+  <script src="to/act/ArchiveController.js"></script>
+  <script src="to/act/ListActionsController.js"></script>
+  <script src="to/act/PlansController.js"></script>
+  <script src="to/chart/BubbleChartController.js"></script>
+  <script src="to/chart/ClickableBubbleChartController.js"></script>
+  <script src="to/edit/EditActionController.js"></script>
+  <script src="to/edit/AddCategoriesToActionController.js"></script>
+  <script src="to/edit/EditCategoryController.js"></script>
+  <script src="to/edit/EditMotivationController.js"></script>
+  <script src="to/edit/AddMotivationsToActionController.js"></script>
+  <script src="to/edit/AddAfterActionsToActionController.js"></script>
+  <script src="to/edit/AddBeforeActionsToActionController.js"></script>
+  <script src="to/enter/EnterActionController.js"></script>
+  <script src="to/enter/EnterCategoryController.js"></script>
+  <script src="to/enter/EnterMotivationController.js"></script>
+  <script src="to/enter/UnifiedActionController.js"></script>
+  <script src="to/revenue/ListAdEngine.js"></script>
+  <script src="to/revenue/us/ListAdEngine.js"></script>
+  <script src="to/settings/SettingsController.js"></script>
+  <script src="to/speech/SpeechModel.js"></script>
+  <script src="to/speech/InputRules.js"></script>
+  <script src="to/speech/SpeechCommandDriver.js"></script>
+  <script src="to/speech/SpeechDictionary.js"></script>
+  <script src="to/speech/SpeechEngine.js"></script>
+  <script src="to/speech/VoiceEngine.js"></script>
+  <script src="to/track/CategoriesController.js"></script>
+  <script src="to/track/EisenhowerController.js"></script>
+  <script src="to/track/KanbanRenderEngine.js"></script>
+  <script src="to/track/KanbanController.js"></script>
+  <script src="to/track/MotivationsController.js"></script>
+  <script src="to/track/ThemesController.js"></script>
+  <script src="to/track/BookmarksController.js"></script>
+  <script src="to/view/ViewActionController.js"></script>
+  <script src="to/view/ViewCategoryController.js"></script>
+  <script src="to/view/ViewMotivationController.js"></script>
+</head>
+<body ng-app="organizator">
+<ion-nav-view></ion-nav-view>
+</body>
+</html>

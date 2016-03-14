@@ -1,0 +1,49 @@
+<div class="no-items-specified" ng-if="vm.afterActions.length === 0">
+  {{::vm.getNoEarlierStepsMessage()}}
+</div>
+<ion-list>
+  <ion-item
+    class="item-remove-animate item-icon-right"
+    ng-repeat="action in vm.afterActions track by action._id | filter: vm.searchText"
+    type="item-text-wrap"
+    ng-click="vm.selectAction(action)"
+  >
+    <section class="urgency-n-priority">
+      <i
+        ng-class="::vm.getPriorityClass(action)"
+        class="priority"></i>
+      <i
+        ng-class="::vm.getUrgencyClass(action)"
+        class="urgency fa fa-lg"></i>
+    </section>
+    <h2>{{::action.phrase}}</h2>
+    <section
+      ng-if="::action.categoryIds.length"
+      class="fa fa-folder-open-o">:
+      <i
+        ng-repeat="categoryId in ::action.categoryIds"
+        ng-class="::vm.priority.getClass(categoryId)"
+      ></i>
+    </section>
+    <section
+      ng-if="::action.motivationIds.length"
+      class="fa fa-dot-circle-o">:
+      <i
+        ng-repeat="motivationId in ::action.motivationIds"
+        ng-class="::vm.impact.getClass(motivationId)"
+      ></i>
+    </section>
+
+    <i
+      ng-if="::vm.canRemoveAfterAction(action)"
+      class="icon ion-chevron-right icon-accessory"></i>
+
+    <ion-option-button
+      class="button-assertive"
+      ng-click="vm.removeAfterAction(action)"
+      ng-if="::vm.canRemoveAfterAction(action)"
+    >
+      Remove
+    </ion-option-button>
+  </ion-item>
+</ion-list>

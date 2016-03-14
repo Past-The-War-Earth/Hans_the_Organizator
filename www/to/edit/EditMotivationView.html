@@ -1,0 +1,168 @@
+<!-- START MotivationView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+	<ion-content>
+		<!-- Enter Motivation in this view -->
+		<label>
+			Name:
+		</label>
+		<textarea
+				ng-model="vm.motivation.description"
+				placeholder="enter what motivates you"
+				type="text"
+				rows="1"
+				>
+		</textarea>
+
+		<label>
+			Impact:
+		</label>
+		<section
+				class="toggle"
+				>
+			<div>
+				<i
+						ng-class="vm.getMotivationImpactClass(vm.motivation)"
+						class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="vm.getMotivationImpact()"
+								></span>
+			</div>
+			<button
+					class="org-mid-button"
+					ng-click="vm.toggleImpactMode()"
+					>
+				<i
+						class="fa fa-lg"
+						ng-class="vm.getImpactModeButtonIcon()"
+						></i>
+			</button>
+		</section>
+		<div
+				class="range range-positive"
+				>
+			<i class="icon fa-lg"
+			   ng-class="vm.getMinimumImpactClass()"
+					></i>
+			<input
+					type="range"
+					name="impact"
+					min="0"
+					max="4"
+					ng-model="vm.motivation.impact"
+					>
+			<i class="icon fa-lg"
+			   ng-class="vm.getMaximumImpactClass()"
+					></i>
+		</div>
+		<!--
+		<label>
+			Teach me like a:
+		</label>
+
+		<div
+				class="range-result to-no-border-item"
+				>
+			<i
+					ng-class="vm.getMotivationCoachingClass(vm.motivation)"
+					class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="vm.getCoachingLabel()"
+								></span>
+		</div>
+
+		<div
+				class="range range-positive"
+				>
+			<i class="fa icon-accessibility fa-lg"></i>
+			<input
+					type="range"
+					name="aiThreshold"
+					min="0"
+					max="4"
+					ng-model="vm.motivation.helpLevel"
+					>
+			<i class="icon fa fa-institution fa-lg"></i>
+		</div>
+		<div class="to-no-border-item">Have more info?</div>
+		<label class="item item-input item-floating-label">
+			<textarea
+					rows="3"
+					ng-model="vm.comment"
+					placeholder="Enter additonal information"
+					></textarea>
+		</label>
+		-->
+		<button
+				class="button button-block button-positive"
+				ng-click="vm.saveMotivation()"
+				>
+			{{::vm.saveMotivationLabel()}}
+		</button>
+	</ion-content>
+</ion-view>
+<!-- END MotivationView -->
+
+
+<!-- TODO
+	Main picture (other pictures)
+
+
+	Free points
+		1-100000
+
+		Before and After
+
+		Reward yourself - did this I get this reward (see a movie, go for a walk, call a friend, etc.)
+
+		Share with friend - make them keep track of your progress
+		Make your progress record public
+
+		Categorize (zone everything, then sub-zone everything)
+		Label (put a label by it all)
+
+
+		First:
+		Analyze - where am i now
+		Strategize - what to do next
+		Act - do what needs to be done
+
+
+		Main page:
+
+		Why are you getting organized?
+
+		Time - 1 hour per day / 6 weeks per year
+		+ 6 weeks of procrasination time
+		What will you do with the new found time?
+
+        Money - 15-20% of budget wasted on duplicate/triplicate stuff, stuff that is needed that could hve
+        been bought ahead of time and cheaper, etc.  (late fees, etc.)
+        What will you with the saved money
+
+        Peace of mind - less stress because everything is already done
+        What will you able do do when you are relaxed?
+
+
+        Focus on the now - organize the things that need to be done NOW or soon, to something that had to be done before
+        or needs to be done way in the future.
+
+
+        Do what works, when it works, where it works.
+        Add "Where" question to Actions
+
+        Do the paperwork in the kitchen, because that's where you like it.  So store the kitchen things there
+        make a zone. Do not store bills stuff ways away from there and/or where it is hard to get to.
+
+
+        Filing is about easy access.
+
+
+        Only 20% of your stuff is needed - the rest can just get in the way.
+
+
+        Add a splash page with the Time,Money,Mind questions
+
+        ?Add "How Hard?" on Action?
+
+        For evey concept add a small icon that would bring up a pop-up with explanation.
+-->

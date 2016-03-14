@@ -1,0 +1,44 @@
+<!-- START AddCategoriesToActionView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+    <link rel="stylesheet" href="to/common/sort/ListStyles.css">
+    <div style="display:flex;" class="bar bar-subheader">
+        <input
+                ng-model="searchText"
+                placeholder="Search Categories"
+                style="width: 100%;"
+                type="search"
+                >
+    </div>
+    <ion-content class="has-header">
+	    <div class="under-subheader"></div>
+        <ion-list>
+            <ion-item
+                    class="item-remove-animate item-icon-right"
+                    ng-repeat="category in vm.otherCategories track by category._id | filter:searchText"
+                    type="item-text-wrap"
+                    ng-click="vm.addCategoryToAction(category)"
+                    >
+                <section class="urgency-n-priority">
+                    <i
+                            ng-class="::vm.getCategoryPriorityClass(category, false)"
+                            class="priority"></i>
+                </section>
+
+                <h2>{{::category.name}}</h2>
+
+                <section class="stats">
+                    <i
+                            ng-if="::category.numPlannedActions"
+                            class="fa fa-briefcase">: {{::category.numPlannedActions}}</i>
+                    <i
+                            ng-if="::category.numReadyActions"
+                            class="ion-clipboard">: {{::category.numReadyActions}}</i>
+                    <i
+                            ng-if="::category.numInProgressActions"
+                            class="ion-hammer">: {{::category.numInProgressActions}}</i>
+                </section>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+<!-- END AddCategoriesToActionView -->

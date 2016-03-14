@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true
+	},
+  "exclude" : [
+    "css",
+    "img",
+    "js",
+    "lib",
+    "templates",
+    "typings"
+  ]
+}

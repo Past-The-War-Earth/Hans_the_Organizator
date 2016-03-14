@@ -1,0 +1,57 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		.bar-subheader {
+			border-color: #f1c40f;
+		}
+		.content .item {
+			border-color: #f1c40f;
+		}
+		.item-icon-right .icon-accessory {
+			color: #f1c40f;
+		}
+	</style>
+	<div style="display:flex;" class="bar bar-subheader">
+		<input
+				ng-model="searchText"
+				style="width: 100%;"
+				type="search"
+				placeholder="Search Actions"
+				>
+	</div>
+	<ion-content class="has-header content">
+		<div class="to-no-border-item"></div>
+		<ion-list>
+			<ion-item
+					class="item-remove-animate item-icon-right"
+					ng-repeat="action in vm.actions track by action._id | filter:searchText"
+					type="item-text-wrap"
+					ng-click="vm.selectAction(action)"
+					>
+				<section class="urgency-n-priority">
+					<i
+							ng-class="::vm.getPriorityClass(action)"></i>
+				</section>
+				<h2>{{action.phrase}}</h2>
+				<section
+						ng-if="::action.categoryIds.length"
+						class="fa fa-folder-open-o">:
+					<i
+							ng-repeat="categoryId in ::action.categoryIds"
+							ng-class="::vm.priority.getClass(categoryId)"
+							></i>
+				</section>
+				<section
+						ng-if="::action.motivationIds.length"
+						class="fa fa-dot-circle-o">:
+					<i
+							ng-repeat="motivationId in ::action.motivationIds"
+							ng-class="::vm.impact.getClass(motivationId)"
+							></i>
+				</section>
+
+				<i class="icon ion-chevron-right icon-accessory"></i>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

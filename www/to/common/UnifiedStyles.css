@@ -1,0 +1,210 @@
+
+.col {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+.col-83 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 83%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 83%;
+    -ms-flex: 0 0 83%;
+    flex: 0 0 83%;
+    max-width: 83%;
+}
+
+/* Responsive Grid Classes */
+/* Adding a class of responsive-X to a row */
+/* will trigger the flex-direction to */
+/* change to column and add some margin */
+/* to any columns in the row for clearity */
+@media (max-width: 567px) {
+    .responsive-sm {
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .responsive-sm .col-83 {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        margin-bottom: 15px;
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .responsive-md {
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .responsive-md .col-83 {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        margin-bottom: 15px;
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1023px) {
+    .responsive-lg {
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .responsive-lg .col-83 {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        margin-bottom: 15px;
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+span {
+    display: inline-block;
+}
+
+.row.eisenhower {
+    padding-top: 0px;
+}
+
+.eisenhower-header {
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 89px;
+}
+
+nav section.col span {
+    margin-bottom: -5px;
+}
+
+section.row:first-of-type {
+    margin-top: -10px;
+}
+
+nav.row.eisenhower label {
+    line-height: 13px;
+    height: 13px;
+    display: block;
+    margin-top: 5px;
+}
+
+.selected-label {
+    font-weight: bold;
+}
+
+section.eisenhower-table li {
+    display: table;
+}
+
+label {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    display: block;
+}
+
+table {
+    border-collapse: inherit;
+}
+
+td {
+    vertical-align: middle;
+}
+
+td:nth-child(2) {
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:nth-child(2) div {
+    display: inline-block;
+    overflow: hidden;
+    width: 0.9em;
+}
+
+nav.col.eisenhower label {
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1.5;
+    transform: translate(0, 100%) rotate(-90deg);
+    transform-origin: 0 0;
+}
+
+nav.col.eisenhower label:after {
+    content: "";
+    display: block;
+    margin: -1.5em 0 100%;
+}
+
+tr:first-child td > nav.eisenhower-header {
+    border: 1px solid gray;
+}
+
+span.quadrant {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.eisenhower-table nav {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 89px;
+}
+
+.kanban label:nth-of-type(2) {
+    font-size: 14px;
+    font-style: normal;
+    margin: -5px;
+}
+
+.selected-button {
+    border: 2px solid #1abc9c !important;
+}
+
+.kanban .row, .kanban .col {
+    padding: 0px;
+}
+
+.kanban nav {
+    border: 3px solid;
+}
+

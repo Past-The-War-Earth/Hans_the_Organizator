@@ -1,0 +1,291 @@
+<!-- START ActionView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+	<style>
+
+		input[type=date] {
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 33px;
+		}
+
+		section.toggle > .due-other {
+			padding-top: 10px;
+		}
+
+		section.listing {
+			margin-top: 20px;
+		}
+
+		section.listing label {
+			margin-top: 0px;
+		}
+
+		td:first-child, td:nth-child(3) {
+			padding-left: 25px;
+			padding-right: 10px;
+			vertical-align: middle;
+		}
+
+		td:nth-child(2) {
+			width: 100%;
+			vertical-align: middle;
+		}
+
+		.no-items-specified {
+			height: 50px;
+			padding-top:15px;
+			text-align: center;
+		}
+
+    .before-actions {
+      padding-left: 10px;
+    }
+
+    .before-actions label {
+      padding-left: 5px;
+    }
+
+    .after-actions {
+      padding-left: 12px;
+    }
+
+    .after-actions label {
+      padding-left: 3px;
+    }
+
+	</style>
+	<ion-content>
+
+		<label>
+			What?
+		</label>
+		<textarea
+				ng-model="vm.action.phrase"
+				placeholder="enter what needs to be done"
+				type="text"
+				rows="1"
+				>
+		</textarea>
+		<label>
+			How?
+		</label>
+		<section
+				class="toggle"
+				>
+			<div
+					ng-bind-html="vm.getActionLabel()"></div>
+			<button
+					class="org-mid-button"
+					ng-click="vm.togglePriorityMode()"
+					>
+				<i
+						class="fa fa-lg"
+						ng-class="vm.getPriorityModeButtonIcon()"
+						></i>
+			</button>
+		</section>
+		<div
+				class="range range-positive"
+				>
+			<i class="icon-to-optional"></i>
+			<input
+					type="range"
+					name="priority"
+					min="0"
+					max="4"
+					ng-model="vm.action.priority"
+					>
+			<i class="icon-to-critical fa-2x"></i>
+		</div>
+
+		<label>
+			When?
+		</label>
+		<section
+				class="toggle"
+				>
+			<div
+					class="due-other"
+					ng-if="!vm.action.estimationBased">
+				Due by:
+			</div>
+			<div ng-if="vm.action.estimationBased && vm.urgency != vm.Urgency.Now">
+				<span
+						ng-bind-html="vm.getUrgencyIcon()"
+						></span>
+				Due in
+				<input
+						class="inline-number-input"
+						type="number"
+						min="1"
+						max="100"
+						ng-model="vm.dueValue"
+						ng-change="vm.dueEstimationChanged()"
+						>
+				<span ng-bind-html="vm.getDuePeriod()"></span>
+			</div>
+			<div class="due-other" ng-if="vm.action.estimationBased && vm.urgency == vm.Urgency.Now">
+				<i class="fa fa-plane fa-lg inline-icon"></i> Due <span class="to-value">Now</span>
+			</div>
+			<button
+					class="org-mid-button"
+					ng-click="vm.toggleUrgencyMode()"
+					>
+				<i
+						class="fa fa-lg"
+						ng-class="vm.getUrgencyModeButtonIcon()"
+						></i>
+			</button>
+		</section>
+
+		<section
+				ng-if="!vm.action.estimationBased"
+				>
+			<input
+					type="date"
+					placeholder="this date"
+					ng-model="vm.action.dueDate"
+					ng-change="vm.dueDateChanged()"
+					>
+		</section>
+
+		<div
+				ng-if="vm.action.estimationBased"
+				class="range range-positive"
+				>
+			<i class="fa ion-android-walk fa-lg"></i>
+			<input
+					type="range"
+					name="urgency"
+					min="0"
+					max="4"
+					ng-model="vm.urgency"
+					ng-change="vm.dueEstimationChanged()"
+					>
+			<i class="fa fa-plane fa-lg"></i>
+		</div>
+		<!-- TODO: add Effort
+		 a) Simple estimation
+		    Hard top Easy
+		b) Estimation in
+			Minutes:
+				5 minute increments
+			Hours
+				1  - 12
+			Days
+				1  - 12
+			Weeks
+				1  - 12
+			Months
+				1  - 12
+			TODO: add location
+			TODO: add Reasoning/Strategies/Need to think it out?
+		 -->
+
+		<section class="listing">
+			<label>Where?</label>
+			<button
+					class="org-mid-button category-button"
+					ng-click="vm.searchCategories()"
+					>
+				<i class="fa fa-plus fa-lg"></i>
+			</button>
+			<table>
+				<tr
+						ng-repeat="category in vm.categories track by category._id"
+						>
+					<td>
+						<i
+								ng-class="::vm.getCategoryPriorityClass(category)"
+								></i>
+					</td>
+					<td>
+						{{::category.name}}
+					</td>
+					<td>
+						<button
+								class="org-mid-button category-button"
+								ng-click="vm.removeCategory($index)"
+								><i class="fa fa-minus fa-lg"></i></button>
+					</td>
+				</tr>
+			</table>
+			<div
+					class="no-items-specified"
+					ng-if="vm.categories.length === 0"
+					>No Categories Specified
+			</div>
+		</section>
+
+		<section class="listing">
+			<label>Why?</label>
+			<button
+					class="org-mid-button category-button"
+					ng-click="vm.searchMotivations()"
+					>
+				<i class="fa fa-plus fa-lg"></i>
+			</button>
+			<table>
+				<tr
+						ng-repeat="motivation in vm.motivations track by motivation._id"
+						>
+					<td>
+						<i
+								ng-class="::vm.getMotivationImpactClass(motivation)"
+								class="fa fa-lg"></i>
+					</td>
+					<td>
+						{{::motivation.description}}
+					</td>
+					<td>
+						<button
+								class="org-mid-button motivation-button"
+								ng-click="vm.removeMotivation($index)"
+								><i class="fa fa-minus fa-lg"></i></button>
+					</td>
+				</tr>
+			</table>
+			<div
+					class="no-items-specified"
+					ng-if="vm.motivations.length === 0"
+					>No Reasons given
+			</div>
+		</section>
+    <section class="listing before-actions">
+      <i
+        class="icon-arrow-left fa-lg"></i>
+      <label>Do Before</label>
+      <button
+        class="org-mid-button category-button"
+        ng-click="vm.addBeforeAction()"
+      >
+        <i class="fa fa-plus fa-lg"></i>
+      </button>
+      <section
+        ng-include="'to/act/BeforeActionsFragment.html'"
+      ></section>
+    </section>
+    <section class="listing after-actions">
+      <i
+        class="icon-arrow-right fa-lg"></i>
+      <label>Do After</label>
+      <button
+        class="org-mid-button category-button"
+        ng-click="vm.addAfterAction()"
+      >
+        <i class="fa fa-plus fa-lg"></i>
+      </button>
+      <section
+        ng-include="'to/act/AfterActionsFragment.html'"
+      ></section>
+    </section>
+		<button
+				class="button button-block button-positive"
+				ng-click="vm.operateOnAction()"
+				ng-bind-html="vm.operateOnActionLabel()"
+				>
+		</button>
+	</ion-content>
+</ion-view>
+<!-- END ActionView -->
+

@@ -1,0 +1,66 @@
+.bar {
+	display: flex;
+}
+
+.left-button {
+	width: 49px;
+	margin-left: 6px;
+}
+
+.left-button-2 {
+	width: 45px;
+	margin-left: 6px;
+}
+
+.bar-subheader > div {
+	display: inline-block;
+	width: 100%;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.sorted-property {
+	float: right;
+	font-size: 11pt;
+	font-style: italic;
+	padding-left: 10px;
+}
+
+.urgency-n-priority {
+	display: inline-block;
+	float:left;
+	text-align: center;
+	padding-top: 6px;
+	padding-right: 16px;
+}
+
+i.urgency, i.priority, i.coaching, i.impact {
+	vertical-align: sub;
+	padding-left: 4px;
+}
+
+section.fa-folder-open-o, section.fa-dot-circle-o {
+	display: inline-block;
+	padding-left: 20px;
+	vertical-align: bottom;
+}
+
+.fa-folder-open > i, .fa-dot-circle-o > i {
+	padding-left: 4px;
+}
+
+.stats {
+	display: inline-block;
+	padding-left: 20px;
+	vertical-align: sub;
+}
+
+.stats i {
+	padding-left: 10px;
+}
+
+.fa-stack .icon-checkbox-unchecked {
+	display: inline-block;
+	margin-top: 7px;
+	margin-left: 3px;
+}

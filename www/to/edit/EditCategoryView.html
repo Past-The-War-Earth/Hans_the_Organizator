@@ -1,0 +1,81 @@
+<!-- START CategoryView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+	<ion-content>
+		<!-- Enter Category in this view -->
+		<label>
+			Name:
+		</label>
+		<textarea
+				ng-model="vm.category.name"
+				placeholder="enter category name"
+				type="text"
+				rows="1"
+				>
+		</textarea>
+
+		<label>
+			Priority:
+		</label>
+		<div
+				class="range-result to-no-border-item"
+				>
+			<i
+					ng-class="vm.getCategoryPriorityClass(vm.category)"
+					class="org-icon"></i>
+						<span
+								ng-bind-html="vm.getCategoryPriority()"
+								></span>
+		</div>
+		<div
+				class="range range-positive"
+				>
+			<i class="icon-to-optional"></i>
+			<input
+					type="range"
+					name="priority"
+					min="0"
+					max="4"
+					ng-model="vm.category.priority"
+					>
+			<i class="icon-to-critical fa-2x"></i>
+		</div>
+		<!--
+		<label>
+			Teach me like a:
+		</label>
+
+		<div
+				class="range-result to-no-border-item"
+				>
+			<i
+					ng-class="vm.getCategoryCoachingClass(vm.category)"
+					class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="vm.getCoachingLabel()"
+								></span>
+		</div>
+		<div
+				class="range range-positive"
+				>
+			<i class="fa icon-accessibility fa-lg"></i>
+			<input
+					type="range"
+					name="aiThreshold"
+					min="0"
+					max="4"
+					ng-model="vm.category.helpLevel"
+					>
+			<i class="icon fa fa-institution fa-lg"></i>
+		</div>
+		-->
+
+		<button
+				class="button button-block button-positive"
+				ng-click="vm.saveCategory()"
+				>
+			{{::vm.saveCategoryLabel()}}
+		</button>
+	</ion-content>
+</ion-view>
+<!-- END CategoryView -->
+

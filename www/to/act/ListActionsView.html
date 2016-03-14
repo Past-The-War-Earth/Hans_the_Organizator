@@ -1,0 +1,54 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+  /*
+		.bar-subheader {
+			border-color: #efadff;
+		}
+		.content .item {
+			border-color: #efadff;
+		}
+		.item-icon-right .icon-accessory {
+			color: #efadff;
+		}
+		*/
+	</style>
+	<div class="bar bar-subheader">
+		<button
+				id="sort-button"
+				class="button"
+				ng-click="vm.sorter.showSortPopup()"
+				>
+			<i
+					class="fa fa-lg"
+					ng-class="vm.sorter.getSortOrderStyle()"
+					></i>
+			<span
+					ng-bind-html="vm.sorter.getSortSymbol()"
+					>
+			</span>
+		</button>
+		<div>
+			<input
+					ng-model="searchText"
+					style="width: 100%;"
+					type="search"
+					placeholder="Search Actions"
+					>
+		</div>
+		<button
+				class="org-mid-button left-button"
+				ng-click="vm.trackActions()"
+				>
+			<i
+					class="fa fa-compass fa-lg"
+					></i>
+		</button>
+	</div>
+	<ion-content class="has-header content">
+		<div class="under-subheader"></div>
+		<section
+				ng-include="'to/act/ActionListFragment.html'"
+				></section>
+	</ion-content>
+</ion-view>

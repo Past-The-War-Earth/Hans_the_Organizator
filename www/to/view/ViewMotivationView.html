@@ -1,0 +1,159 @@
+<!-- START ViewMotivationView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+	<style>
+		section > div {
+			padding: 4px 10px 4px 10px;
+			vertical-align: middle;
+		}
+
+		.long-desc-button {
+			padding-left: 2px;
+			padding-right: 2px;
+		}
+
+		.stat-count {
+			float: right;
+		}
+	</style>
+	<ion-content>
+		<article
+				ng-if="vm.loaded"
+				>
+			<section>
+				<label>Name:</label>
+
+				<div>{{::vm.motivation.description}}</div>
+			</section>
+			<section>
+				<label>Impact:</label>
+
+				<div>
+					<i
+							ng-class="::vm.getMotivationImpactClass(vm.motivation)"
+							class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="::vm.getMotivationImpact()"
+								></span>
+				</div>
+			</section>
+			<!--
+			<section>
+				<label>Coach:</label>
+
+				<div>
+					<i
+							ng-class="::vm.getMotivationCoachingClass(vm.motivation)"
+							class="org-icon fa fa-lg"></i>
+						<span
+								ng-bind-html="::vm.getCoachingLabel()"
+								></span>
+				</div>
+			</section>
+			<!--
+			comments:string[];
+			description:string;
+			numCanceledActions:number;
+			numCompleteActions:number;
+			numReadyAndInProgressActions:number;
+			numPlannedActions:number;
+			Total Num actions
+			Created date
+			Help level
+			Last modified date
+			Average completion time
+			Average importance of actions
+			Average
+			impact;
+			positive:boolean;
+			-->
+			<section>
+				<label>Stats</label>
+
+				<div
+						ng-if="::vm.motivation.numPlannedActions"
+						>
+					# Planned Actions
+					<span class="stat-count">
+						{{::vm.motivation.numPlannedActions}}
+					</span>
+				</div>
+				<div
+						ng-if="::vm.motivation.numReadyActions"
+						>
+					# Ready Actions
+					<span class="stat-count">
+						{{::vm.motivation.numReadyActions}}
+					</span>
+				</div>
+				<div
+						ng-if="::vm.motivation.numInProgressActions"
+						>
+					# In Progress Actions
+					<span class="stat-count">
+						{{::vm.motivation.numInProgressActions}}
+					</span>
+				</div>
+				<div
+						ng-if="::vm.motivation.numCompleteActions"
+						>
+					# Complete Actions
+					<span class="stat-count">
+						{{::vm.motivation.numCompleteActions}}
+					</span>
+				</div>
+				<div
+						ng-if="::vm.motivation.numCanceledActions"
+						>
+					# Complete Actions
+					<span class="stat-count">
+						{{::vm.motivation.numCanceledActions}}
+					</span>
+				</div>
+				<div>
+					# Actions
+					<span class="stat-count">
+						{{::vm.motivation.numActions}}
+					</span>
+				</div>
+			</section>
+
+			<nav
+					class="row"
+					>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewPlans()"
+						>
+					Plan
+				</button>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewKanban()"
+						>
+					Act
+				</button>
+				<button
+						class="col button button-positive"
+						ng-click="vm.viewEisenhower()"
+						>
+					Track
+				</button>
+				<button
+						class="col button button-positive long-desc-button"
+						ng-click="vm.viewCategories()"
+						>
+					Categories
+				</button>
+			</nav>
+			<nav class="row">
+				<button
+						class="col button button-positive"
+						ng-click="vm.edit()"
+						>
+					Edit
+				</button>
+			</nav>
+		</article>
+	</ion-content>
+</ion-view>
+<!-- END ViewMotivationView -->

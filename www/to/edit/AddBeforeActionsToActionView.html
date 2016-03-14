@@ -1,0 +1,56 @@
+<!-- START AddBeforeActionsToActionView -->
+<style>
+  .no-items-specified {
+    height: 50px;
+    padding-top:15px;
+    text-align: center;
+  }
+</style>
+<ion-view view-title="{{::vm.viewTitle}}">
+  <link rel="stylesheet" href="to/common/sort/ListStyles.css">
+  <div style="display:flex;" class="bar bar-subheader">
+    <div>
+      <input
+        id="text-recognition-result"
+        ng-model="searchText"
+        placeholder="Search Actions"
+        style="width: 100%;"
+        type="search"
+      >
+    </div>
+    <button
+      class="org-mid-button left-button"
+      ng-class="vm.toggleMotivationBackgroundClass"
+      ng-click="vm.toggleMotivationFilter()"
+    >
+      <i
+        class="fa fa-dot-circle-o fa-lg"
+      ></i>
+    </button>
+    <button
+      class="org-mid-button left-button"
+      ng-class="vm.toggleCategoryBackgroundClass"
+      ng-click="vm.toggleCategoryFilter()"
+    >
+      <i
+        class="fa fa-folder-open-o fa-lg"
+      ></i>
+    </button>
+    <button
+      class="org-mid-button left-button"
+      ng-class="vm.toggleAdviseBackgroundClass"
+      ng-click="vm.toggleAdviseFilter()"
+    >
+      <i
+        class="fa fa-life-ring fa-lg"
+      ></i>
+    </button>
+  </div>
+  <ion-content class="has-header">
+    <div class="under-subheader"></div>
+    <section
+      ng-include="'to/act/BeforeActionsFragment.html'"
+    ></section>
+  </ion-content>
+</ion-view>
+<!-- END AddBeforeActionsToActionView -->

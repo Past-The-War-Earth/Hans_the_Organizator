@@ -1,0 +1,309 @@
+<!-- START ViewActionView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+  <style>
+
+    input[ng-model="vm.action.phrase"] {
+      width: 100%;
+    }
+
+    section > div {
+      padding: 4px 10px 4px 10px;
+      vertical-align: middle;
+    }
+
+    p {
+      padding: 5px;
+    }
+
+    .category-button {
+      padding: 7px;
+    }
+
+    .motivation-button {
+      padding: 7px;
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+
+    tr {
+      height: 50px;
+    }
+
+    td:first-child, td:nth-child(3) {
+      padding-left: 10px;
+      padding-right: 10px;
+      vertical-align: middle;
+    }
+
+    td:nth-child(2) {
+      width: 100%;
+      vertical-align: middle;
+    }
+
+    .no-items-specified {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .state-transition-date {
+      float: right;
+    }
+
+    .org-icon {
+      padding: 5px;
+      padding-left: 0px;
+    }
+
+    .org-icon.fa-ship {
+      padding-right: 2px;
+    }
+
+    #history label:not(:first-of-type) {
+      padding-left: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    #display-header span {
+      display: inline-block;
+      padding: 10px;
+      padding-top: 20px;
+      padding-left: 80px;
+    }
+
+    #display-header button {
+      margin-top: 10px;
+      position: absolute;
+      right: 10px;
+    }
+
+    .before-actions {
+      padding-left: 10px;
+    }
+
+    .before-actions label {
+      padding-left: 5px;
+    }
+
+    .after-actions {
+      padding-left: 12px;
+    }
+
+    .after-actions label {
+      padding-left: 3px;
+    }
+
+  </style>
+  <ion-content>
+    <div
+      ng-if="::vm.deferred"
+    >
+
+      <section id="display-header">
+        <span ng-bind-html="vm.getDisplayTypeHtml()"></span>
+        <button
+          class="org-mid-button"
+          ng-click="vm.changeDisplayType()"
+        >
+          <i
+            class="fa fa-lg"
+            ng-class="vm.getDisplayTypeClass()"
+          ></i>
+        </button>
+      </section>
+
+      <article
+        ng-show="vm.asParagraph"
+      >
+        <label
+          ng-bind-html="::vm.getParagraphHtml()"
+        ></label>
+      </article>
+      <article
+        ng-show="!vm.asParagraph"
+      >
+        <!--
+                TODO: add Who for groups?
+                -->
+        <section>
+          <label>What?</label>
+
+          <div>{{::vm.action.phrase}}</div>
+        </section>
+
+        <section>
+          <label>How?</label>
+
+          <!-- TODO: work here next -->
+          <div>
+            <i
+              ng-class="::vm.getPriorityClass(vm.action)"
+              class="org-icon"></i>
+						<span
+              ng-bind-html="vm.getPriorityLabel()"
+            ></span>
+          </div>
+        </section>
+        <section>
+          <label>When?</label>
+
+          <div>
+            <i
+              ng-class="::vm.getUrgencyClassOrDone()"
+              class="org-icon fa fa-lg"></i>
+						<span
+              ng-bind-html="vm.getDueFragment()"
+            ></span>
+          </div>
+        </section>
+        <section>
+          <label>Where?</label>
+          <table>
+            <tr
+              ng-repeat="category in ::vm.categories track by category._id"
+            >
+              <td>
+                <i
+                  ng-class="::vm.getCategoryPriorityClass(category)"
+                ></i>
+              </td>
+              <td>
+                {{::category.name}}
+              </td>
+              <td>
+                <button
+                  class="org-button category-button"
+                  ng-click="vm.viewCategory(category)"
+                ><i class="fa fa-folder-open-o fa-lg"></i></button>
+              </td>
+            </tr>
+          </table>
+          <div
+            class="no-items-specified"
+            ng-if="::vm.categories.length === 0"
+          >No Categories Specified
+          </div>
+        </section>
+        <section>
+          <label>Why?</label>
+          <table>
+            <tr
+              ng-repeat="motivation in ::vm.motivations track by motivation._id"
+            >
+              <td>
+                <i
+                  ng-class="::vm.getMotivationImpactClass(motivation)"
+                  class="fa fa-lg"></i>
+              </td>
+              <td>
+                {{::motivation.description}}
+              </td>
+              <td>
+                <button
+                  class="org-button motivation-button"
+                  ng-click="vm.viewMotivation(motivation)"
+                ><i class="fa fa-dot-circle-o fa-lg"></i></button>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            class="no-items-specified"
+            ng-if="::vm.motivations.length === 0"
+          >No Reasons given
+          </div>
+        </section>
+        <section
+          class="before-actions"
+        >
+          <i
+            class="icon-arrow-left fa-lg"></i>
+          <label>Do Before</label>
+          <section
+            ng-include="'to/act/BeforeActionsFragment.html'"
+          ></section>
+        </section>
+        <section
+          class="after-actions"
+        >
+          <i
+            class="icon-arrow-right fa-lg"></i>
+          <label>Do After</label>
+          <section
+            ng-include="'to/act/AfterActionsFragment.html'"
+          ></section>
+        </section>
+        <section id="history">
+          <label>History</label>
+
+          <div>
+            Created
+						<span class="state-transition-date">
+							{{::vm.action.createdDate.toLocaleDateString()}}
+						</span>
+          </div>
+          <div ng-if="::vm.action.createdDate.toLocaleDateString() != vm.action.updatedDate.toLocaleDateString()">
+            Last Saved
+						<span class="state-transition-date">
+							{{::vm.action.updatedDate.toLocaleDateString()}}
+						</span>
+          </div>
+          <label>Steps Taken</label>
+          <!-- TODO: remove before production
+                                        <table>
+                                            <tr
+                                                    ng-repeat="actionState in ::vm.action.states track by actionState.number"
+                                                    >
+                                                <td>{{::vm.getStateName(actionState)}}</td>
+                                                <td>{{::vm.getNumDaysInState(actionState)}}</td>
+                                                <td>{{::vm.getMoveToStateDate(actionState)}}</td>
+                                            </tr>
+                    </table>
+                                            -->
+          <div
+            ng-repeat="actionState in ::vm.action.states track by actionState.number"
+          >{{::vm.getStateDetails(actionState)}}
+						<span class="state-transition-date">
+							{{::vm.getMoveToStateDate(actionState)}}
+						</span>
+          </div>
+        </section>
+        <!--
+                TODO: add How - detailed/broken-down description of the action
+                -->
+      </article>
+
+
+      <nav class="row">
+        <button
+          class="col button button-positive"
+          ng-click="vm.changeState()"
+          ng-if="::vm.actionIsNotDone(vm.action)"
+        >
+          Move
+        </button>
+        <button
+          class="col button button-positive"
+          ng-click="vm.copy()"
+        >
+          Copy
+        </button>
+        <button
+          class="col button button-positive"
+          ng-click="vm.share()"
+        >
+          Share
+        </button>
+        <button
+          class="col button button-positive"
+          ng-if="::vm.isIncompleteAction()"
+          ng-click="vm.edit()"
+        >
+          Edit
+        </button>
+      </nav>
+    </div>
+  </ion-content>
+</ion-view>
+<!-- END ViewActionView -->
+

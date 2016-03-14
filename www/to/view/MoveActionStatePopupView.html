@@ -1,0 +1,25 @@
+<ion-radio
+		ng-if="::vm.action.kanbanState != vm.Kanban.Planned && vm.action.kanbanState != vm.Kanban.RecentlyDone"
+		ng-model="vm.newKanbanState"
+		ng-value="vm.Kanban.Planned"
+		>Planned</ion-radio>
+<ion-radio
+		ng-if="::vm.action.kanbanState != vm.Kanban.Ready && vm.action.kanbanState != vm.Kanban.RecentlyDone"
+		ng-model="vm.newKanbanState"
+		ng-value="vm.Kanban.Ready"
+		>Ready</ion-radio>
+<ion-radio
+		ng-if="::vm.action.kanbanState != vm.Kanban.InProgress && vm.action.kanbanState != vm.Kanban.RecentlyDone"
+		ng-model="vm.newKanbanState"
+		ng-value="vm.Kanban.InProgress"
+		>In Progress</ion-radio>
+<ion-radio
+		ng-if="::vm.action.kanbanState != vm.Kanban.RecentlyDone"
+		ng-model="vm.newKanbanState"
+		ng-value="vm.Kanban.RecentlyDone"
+		>Recently Done</ion-radio>
+<ion-radio
+		ng-if="::vm.action.kanbanState != vm.Kanban.Archived"
+		ng-model="vm.newKanbanState"
+		ng-value="vm.Kanban.Archived"
+		>Archived</ion-radio>

@@ -1,0 +1,388 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+
+	<link rel="stylesheet" href="to/common/UnifiedStyles.css">
+	<style>
+		body {
+			height: 100%;
+		}
+
+		.scroll {
+			height: 100%;
+		}
+
+		article {
+			min-height:100%;
+			position:relative;
+		}
+
+		footer {
+			position:absolute;
+			bottom:0;
+			height:55px;
+		}
+
+	</style>
+	<!-- Within Eisenhower urgencies and priorities are ranked 0 - 4 -->
+	<ion-content class="has-header content">
+		<article
+				ng-if="vm.loaded"
+				>
+
+			<nav class="row eisenhower">
+				<div class="col">
+					<button
+							class="col org-nav-button button-positive background-track"
+							ng-click="vm.bubbleChart()"
+							>
+						<i class="icon-spinner fa-2x"></i>
+					</button>
+				</div>
+				<section
+						class="col"
+						ng-click="vm.onUrgencyColumnClick(0)"
+						>
+					<span>
+					<nav class="eisenhower-header"
+					     ng-style="vm.getSelectedUrgencyStyle(0)"
+							>
+						<i class="fa ion-android-walk fa-lg"></i>
+					</nav>
+					</span>
+					<label
+							ng-class="vm.getSelectedUrgencyLabelClass(0)">
+						Years
+					</label>
+				</section>
+				<section
+						class="col"
+						ng-click="vm.onUrgencyColumnClick(1)"
+						>
+					<span>
+					<nav class="eisenhower-header"
+					     ng-style="vm.getSelectedUrgencyStyle(1)"
+							>
+						<i class="fa fa-bicycle fa-lg"></i>
+					</nav>
+					</span>
+					<label
+							ng-class="vm.getSelectedUrgencyLabelClass(1)">
+						Months
+					</label>
+				</section>
+				<section
+						class="col"
+						ng-click="vm.onUrgencyColumnClick(2)"
+						>
+					<span>
+					<nav class="eisenhower-header"
+					     ng-style="vm.getSelectedUrgencyStyle(2)"
+							>
+						<i class="fa fa-car fa-lg"></i>
+					</nav>
+					</span>
+					<label
+							ng-class="vm.getSelectedUrgencyLabelClass(2)">
+						Weeks
+					</label>
+				</section>
+				<section
+						class="col"
+						ng-click="vm.onUrgencyColumnClick(3)"
+						>
+					<span>
+					<nav class="eisenhower-header"
+					     ng-style="vm.getSelectedUrgencyStyle(3)"
+							>
+						<i class="fa fa-subway fa-lg"></i>
+					</nav>
+					</span>
+					<label
+							ng-class="vm.getSelectedUrgencyLabelClass(3)">
+						Days
+					</label>
+				</section>
+				<section
+						class="col"
+						ng-click="vm.onUrgencyColumnClick(4)"
+						>
+					<span>
+						<nav class="eisenhower-header"
+						     ng-style="vm.getSelectedUrgencyStyle(4)"
+								>
+							<i class="fa fa-plane fa-lg"></i>
+						</nav>
+					</span>
+					<label
+							ng-class="vm.getSelectedUrgencyLabelClass(4)">
+						Now
+					</label>
+				</section>
+			</nav>
+			<section class="row">
+				<nav class="col eisenhower">
+					<table class="list">
+						<tr
+								ng-click="vm.onPriorityRowClick(4)"
+								>
+							<td>
+								<nav class="eisenhower-header"
+								     ng-style="vm.getSelectedPriorityStyle(4)"
+										>
+									<i class="fa icon-to-critical fa-lg"></i>
+								</nav>
+							</td>
+							<td>
+								<div>
+									<label
+											ng-class="vm.getSelectedPriorityLabelClass(4)"
+											>Vital</label>
+								</div>
+							</td>
+						</tr>
+						<tr
+								ng-click="vm.onPriorityRowClick(3)"
+								>
+							<td>
+								<nav class="eisenhower-header"
+								     ng-style="vm.getSelectedPriorityStyle(3)"
+										>
+									<i class="fa icon-to-very-important fa-lg"></i>
+								</nav>
+							</td>
+							<td>
+								<div>
+									<label
+											ng-class="vm.getSelectedPriorityLabelClass(3)"
+											>Key</label>
+								</div>
+							</td>
+						</tr>
+						<tr
+								ng-click="vm.onPriorityRowClick(2)"
+								>
+							<td>
+								<nav class="eisenhower-header"
+								     ng-style="vm.getSelectedPriorityStyle(2)"
+										>
+									<i class="fa icon-to-important fa-lg"></i>
+								</nav>
+							</td>
+							<td>
+								<div>
+									<label
+											ng-class="vm.getSelectedPriorityLabelClass(2)"
+											>Major</label>
+								</div>
+							</td>
+						</tr>
+						<tr
+								ng-click="vm.onPriorityRowClick(1)"
+								>
+							<td>
+								<nav class="eisenhower-header"
+								     ng-style="vm.getSelectedPriorityStyle(1)"
+										>
+									<i class="fa icon-to-not-important"></i>
+								</nav>
+							</td>
+							<td>
+								<div>
+									<label
+											ng-class="vm.getSelectedPriorityLabelClass(1)"
+											>Minor</label>
+								</div>
+							</td>
+						</tr>
+						<tr
+								ng-click="vm.onPriorityRowClick(0)"
+								>
+							<td>
+								<nav class="eisenhower-header"
+								     ng-style="vm.getSelectedPriorityStyle(0)"
+										>
+									<i class="fa icon-to-optional"></i>
+								</nav>
+							</td>
+							<td>
+								<div>
+									<label
+											ng-class="vm.getSelectedPriorityLabelClass(0)"
+											>Petty</label>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</nav>
+				<!--
+				FIXME: colors
+	Plan			Purple  Amethyst        #9b59b6
+	Purple is individual, creative and inventive
+	Track			Turquoise               #1abc9c
+	Turquoise is clarity of thought and communication
+	Act			    Blue    Peter River     #3498db
+	Blue is honesty and trustworthiness
+	Categories		Green   Emerald         #2ecc71
+	Green is balancing and reflects nature
+	Reasons			Orange  Carrot          #e67e22
+	Orange is adventurous and affordable
+	Archive			Yellow Sun Flower       #f1c40f
+	Yellow is cheerful and fun
+
+				Red     Alizarin        #e74c3c
+				Red is attention-getting
+				Dark    Wet Asphalt     #34495e
+
+	Settings        Gray    Concrete			#95a5a6
+	Gray is neutral, refined and contemporary
+
+	Pink is loving, compassionate, understanding, youthful and romantic
+	Indigo in integrity and sincerity
+	Magenta is compassionate, spiritual yet practical
+	White is simplicity, cleanliness, order and the new slate to write upon
+	Black is authority, power and control
+	Brown is comfort, dependability and friendliness
+	Silver will appear as gray on a website so read the information on gray to endure that is the message you wish to send
+	Gold can appear as a dirty yellow which is not positive for any business. Adjust gold on your website to a golden yellow and read the meaning of the color yellow to see if it imparts the message you want to send
+				-->
+				<section
+						class="col eisenhower eisenhower-table"
+						ng-repeat="urgencyColumns in vm.matrixState"
+						>
+					<ul class="list">
+						<li
+								ng-repeat="quadrant in urgencyColumns"
+								>
+							<span
+									class="quadrant"
+									ng-click="vm.onQuadrantClick(quadrant)"
+									>
+								<nav
+										ng-style="vm.getQuadrantStyle(quadrant)"
+										>
+									{{vm.getQuadrantLabel(quadrant)}}
+								</nav>
+							</span>
+
+						</li>
+					</ul>
+				</section>
+			</section>
+
+			<section class="row kanban">
+				<div
+						class="col"
+						></div>
+				<div
+						class="col col-83"
+						>
+					<div class="row">
+
+						<div
+								class="planned-footer col"
+								>
+							<label
+									ng-class="vm.getPlannedLabelClass()"
+									>Plan</label>
+							<span>
+					<nav
+							class="eisenhower-header border-plan"
+							ng-click="vm.selectPlanned()"
+							ng-class="vm.getPlannedButtonClass()"
+							>
+						<i
+								class="fa fa-briefcase fa-lg"></i>
+					</nav>
+							</span>
+
+							<label
+									ng-class="vm.getPlannedLabelClass()"
+									ng-bind-html="vm.getPlannedCount()"
+									></label>
+						</div>
+						<div
+								class="ready-footer col"
+								>
+							<label
+									ng-class="vm.getReadyLabelClass()"
+									>
+								Ready
+							</label>
+							<span>
+					<nav
+							class="eisenhower-header border-categories"
+							ng-click="vm.selectReady()"
+							ng-class="vm.getReadyButtonClass()"
+							>
+						<i
+								class="ion-clipboard fa-lg"></i>
+					</nav>
+							</span>
+
+							<label
+									ng-class="vm.getReadyLabelClass()"
+									ng-bind-html="vm.getReadyCount()"
+									></label>
+						</div>
+						<div
+								class="in-progress-footer col"
+								>
+							<label
+									ng-class="vm.getInProgressLabelClass()"
+									>Doing</label>
+							<span>
+					<nav
+							class="eisenhower-header border-advise"
+							ng-click="vm.selectInProgress()"
+							ng-class="vm.getInProgressButtonClass()"
+							>
+						<i
+								class="ion-hammer fa-lg"></i>
+					</nav>
+							</span>
+
+							<label
+									ng-class="vm.getInProgressLabelClass()"
+									ng-bind-html="vm.getInProgressCount()"
+									></label>
+						</div>
+					</div>
+				</div>
+			</section>
+			<footer class="row">
+				<nav class="col">
+					<button
+							class="org-nav-button background-plan"
+							ng-click="vm.searchActions()"
+							>
+						<i class="fa fa-briefcase fa-lg"></i>
+					</button>
+				</nav>
+				<nav class="col">
+					<button
+							class="org-nav-button background-act"
+							ng-click="vm.kanbanActions()"
+							>
+						<i class="fa fa-check-square-o fa-lg"></i>
+					</button>
+				</nav>
+				<nav class="col">
+					<button
+							class="org-nav-button background-advise"
+							ng-click="vm.viewMotivations()"
+							>
+						<i class="fa fa-dot-circle-o fa-lg"></i>
+					</button>
+				</nav>
+				<nav class="col">
+					<button
+							class="org-nav-button background-categories"
+							ng-click="vm.viewCategories()"
+							>
+						<i class="fa fa-folder-open-o fa-lg"></i>
+					</button>
+				</nav>
+			</footer>
+
+		</article>
+	</ion-content>
+</ion-view>

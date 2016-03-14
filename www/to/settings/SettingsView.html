@@ -1,0 +1,41 @@
+<!-- START SettingsView -->
+<ion-view view-title="Enter Action">
+	<ion-content>
+		<!-- Enter Action in this view -->
+
+		<div class="bar bar-header">
+			<input type="search" placeholder="As part of">
+			<button
+					class="button"
+					ng-click="vm.addCategory()"
+					>+
+			</button>
+		</div>
+		<!-- Dictator to "Not my problem" -->
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Assertiveness</span>
+		</label>
+
+		<div class="list">
+			<div class="item range range-positive">
+				<i class="icon ion-ios7-sunny-outline"></i>
+				<input type="range" name="volume" min="0" max="100" value="33">
+				<i class="icon ion-ios7-sunny"></i>
+			</div>
+		</div>
+
+		<!-- Deep blue to Toaster -->
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Intelligence</span>
+		</label>
+
+		<div class="list">
+			<div class="item range range-positive">
+				<i class="icon ion-ios7-sunny-outline"></i>
+				<input type="range" name="volume" min="0" max="100" value="33">
+				<i class="icon ion-ios7-sunny"></i>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+<!-- End SettingsView -->

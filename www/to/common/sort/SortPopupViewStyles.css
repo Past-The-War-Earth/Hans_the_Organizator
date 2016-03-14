@@ -1,0 +1,15 @@
+label.item-radio > div.item-content {
+	padding: 0px;
+}
+.sort-radio-icon {
+	display: inline-block;
+	font-size: 1.5em;
+	text-align: center;
+	vertical-align: -15%;
+	width: 40px;
+}
+
+.sort-radio-label {
+	padding: 16px 49px 16px 0px;
+	display: inline-block;
+}

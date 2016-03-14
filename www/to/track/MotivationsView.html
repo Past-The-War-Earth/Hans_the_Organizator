@@ -1,0 +1,82 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		.bar-subheader {
+			border-color: #e67e22;
+		}
+		.content .item {
+			border-color: #e67e22
+		}
+		.item-icon-right .icon-accessory {
+			color: #e67e22;
+		}
+	</style>
+	<!-- Pick a motivation in this view -->
+	<div class="bar bar-subheader">
+		<button
+				id="sort-button"
+				class="button"
+				ng-click="vm.sorter.showSortPopup()"
+				>
+			<i
+					class="fa fa-lg"
+					ng-class="vm.sorter.getSortOrderStyle()"
+					></i>
+			<span
+					ng-bind-html="vm.sorter.getSortSymbol()"
+					>
+			</span>
+		</button>
+		<div>
+			<input
+					ng-model="searchText"
+					type="search"
+					placeholder="Search Reasons"
+					>
+		</div>
+		<button
+				class="org-mid-button left-button-2"
+				ng-click="vm.addMotivation()"
+				>
+			<i class="fa fa-plus fa-lg"></i>
+		</button>
+	</div>
+	<ion-content class="has-header content">
+		<div class="under-subheader"></div>
+		<ion-list>
+			<ion-item
+					class="item-remove-animate item-icon-right"
+					ng-repeat="motivation in vm.motivations track by motivation._id | filter:searchText"
+					type="item-text-wrap"
+					ng-click="vm.selectMotivation(motivation)"
+					>
+				<section class="urgency-n-priority">
+					<i
+							ng-class="::vm.getMotivationImpactClass(motivation)"
+							class="impact fa-lg"></i>
+					<i
+							ng-class="::vm.getMotivationCoachingClass(motivation)"
+							class="coaching fa fa-lg"></i>
+				</section>
+				<h2>{{motivation.description}}</h2>
+				<section class="stats">
+					<i
+							ng-if="::motivation.numPlannedActions"
+							class="fa fa-briefcase">: {{::motivation.numPlannedActions}}</i>
+					<i
+							ng-if="::motivation.numReadyActions"
+							class="ion-clipboard">: {{::motivation.numReadyActions}}</i>
+					<i
+							ng-if="::motivation.numInProgressActions"
+							class="ion-hammer">: {{::motivation.numInProgressActions}}</i>
+				</section>
+
+				<i class="icon ion-chevron-right icon-accessory"></i>
+
+				<ion-option-button class="button-assertive" ng-click="vm.listActions(motivation)">
+					List Actions
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

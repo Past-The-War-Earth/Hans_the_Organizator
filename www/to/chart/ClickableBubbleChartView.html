@@ -1,0 +1,164 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		.bar-subheader {
+			border-color: #1abc9c;
+		}
+
+		.content .item {
+			border-color: #1abc9c;
+		}
+
+		.item-icon-right .icon-accessory {
+			color: #1abc9c;
+		}
+
+		.selected-action {
+			/*stroke-width: 3px;*/
+			/*stroke-dasharray: 5,5;*/
+			/*fill: #1abc9c;*/
+			/*stroke: #1abc9c !important;*/
+			stroke-width: 5px !important;
+		}
+
+		.planned-action {
+			stroke: #8e44ad;
+			stroke-width: 3px;
+			/*stroke-dasharray: 6,6;*/
+		}
+
+		.ready-action {
+			stroke: #27ae60;
+			stroke-width: 3px;
+			/*stroke-dasharray: 6,6;*/
+		}
+
+		.in-progress-action {
+			stroke: #d35400;
+			stroke-width: 3px;
+			/*stroke-dasharray: 6,6;*/
+		}
+
+		header section {
+			height: 50px;
+		}
+
+		.eisenhower-header {
+			border: 2px solid gray;
+			height: 55px;
+			width: 55px;
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+			border-radius: 27px;
+		}
+
+		menu > div > div {
+			text-align: right;
+			display: table-cell;
+			vertical-align: middle;
+			height: 55px;
+			width: 55px;
+		}
+
+		svg {
+			margin: 2px;
+			border: 2px solid #1abc9c;
+			border-radius: 4px;
+			padding: 1px;
+		}
+
+	</style>
+	<ion-content class="has-header content">
+<!--		<menu class="row">
+			<div class="col">
+				<div>
+					When:
+				</div>
+			</div>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedUrgencyStyle(4)"
+				     ng-click="vm.onUrgencyColumnClick(4)">
+					<i class="fa fa-plane fa-lg"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedUrgencyStyle(3)"
+				     ng-click="vm.onUrgencyColumnClick(3)">
+					<i class="fa fa-subway fa-lg"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedUrgencyStyle(2)"
+				     ng-click="vm.onUrgencyColumnClick(2)">
+					<i class="fa fa-car fa-lg"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedUrgencyStyle(1)"
+				     ng-click="vm.onUrgencyColumnClick(1)">
+					<i class="fa fa-bicycle fa-lg"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedUrgencyStyle(0)"
+				     ng-click="vm.onUrgencyColumnClick(0)">
+					<i class="fa ion-android-walk fa-lg"></i>
+				</nav>
+			</section>
+		</menu>-->
+		<section class="bubble-chart">
+			<svg width="100%"></svg>
+		</section>
+<!--		<menu class="row">
+			<div class="col">
+				<div>
+					How:
+				</div>
+			</div>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedPriorityStyle(4)"
+				     ng-csectionck="vm.onPriorityRowClick(4)">
+					<i class="icon-to-critical fa-2x"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedPriorityStyle(3)"
+				     ng-csectionck="vm.onPriorityRowClick(3)">
+					<i class="icon-to-very-important fa-2x"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedPriorityStyle(2)"
+				     ng-csectionck="vm.onPriorityRowClick(2)">
+					<i class="icon-to-important fa-lg"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedPriorityStyle(1)"
+				     ng-csectionck="vm.onPriorityRowClick(1)">
+					<i class="icon-to-not-important"></i>
+				</nav>
+			</section>
+			<section class="col">
+				<nav class="eisenhower-header"
+				     ng-style="vm.getSelectedPriorityStyle(0)"
+				     ng-csectionck="vm.onPriorityRowClick(0)">
+					<i class="icon-to-optional"></i>
+				</nav>
+			</section>
+		</menu>-->
+		<section
+				ng-include="'to/act/ActionListFragment.html'"
+				></section>
+	</ion-content>
+</ion-view>

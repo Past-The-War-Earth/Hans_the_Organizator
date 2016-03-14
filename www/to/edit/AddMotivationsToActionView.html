@@ -1,0 +1,48 @@
+<!-- START AddMotivationsToActionView -->
+<ion-view view-title="{{::vm.viewTitle}}">
+    <link rel="stylesheet" href="to/common/sort/ListStyles.css">
+    <div style="display:flex;" class="bar bar-subheader">
+        <input
+                style="width: 100%;"
+                type="search"
+                ng-model="searchText"
+                placeholder="Search Motivations"
+                >
+        <button
+                class="button button-positive"
+                ng-click="vm.addMotivation()"
+                >
+            Add New ...
+        </button>
+    </div>
+    <ion-content class="has-header">
+        <div class="under-subheader"></div>
+        <ion-list>
+            <ion-item
+                    class="item-remove-animate item-icon-right"
+                    ng-repeat="motivation in vm.otherMotivations track by motivation._id | filter:searchText"
+                    type="item-text-wrap"
+                    ng-click="vm.addMotivationToAction(motivation)"
+                    >
+                <section class="urgency-n-priority">
+                    <i
+                            ng-class="::vm.getMotivationImpactClass(motivation)"
+                            class="impact fa-lg"></i>
+                </section>
+                <h2>{{::motivation.description}}</h2>
+                <section class="stats">
+                    <i
+                            ng-if="::motivation.numPlannedActions"
+                            class="fa fa-briefcase">: {{::motivation.numPlannedActions}}</i>
+                    <i
+                            ng-if="::motivation.numReadyActions"
+                            class="ion-clipboard">: {{::motivation.numReadyActions}}</i>
+                    <i
+                            ng-if="::motivation.numInProgressActions"
+                            class="ion-hammer">: {{::motivation.numInProgressActions}}</i>
+                </section>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+<!-- END AddMotivationsToActionView -->

@@ -1,0 +1,82 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		.bar-subheader {
+			border-color: #2ecc71;
+		}
+		.content .item {
+			border-color: #2ecc71;
+		}
+		.item-icon-right .icon-accessory {
+			color: #2ecc71;
+		}
+	</style>
+	<!-- Pick a category in this view -->
+	<div class="bar bar-subheader">
+		<button
+				id="sort-button"
+				class="button"
+				ng-click="vm.sorter.showSortPopup()"
+				>
+			<i
+					class="fa fa-lg"
+					ng-class="vm.sorter.getSortOrderStyle()"
+					></i>
+			<span
+					ng-bind-html="vm.sorter.getSortSymbol()"
+					>
+			</span>
+		</button>
+		<div>
+			<input
+					ng-model="searchText"
+					type="search"
+					placeholder="Search Categories"
+					>
+		</div>
+		<button
+				class="org-mid-button left-button-2"
+				ng-click="vm.addCategory()"
+				>
+			<i class="fa fa-plus fa-lg"></i>
+		</button>
+	</div>
+	<ion-content class="has-header content">
+		<div class="under-subheader"></div>
+		<ion-list>
+			<ion-item
+					class="item-remove-animate item-icon-right"
+					ng-repeat="category in vm.categories track by category._id | filter:searchText"
+					type="item-text-wrap"
+					ng-click="vm.selectCategory(category)"
+					>
+				<section class="urgency-n-priority">
+				<i
+						ng-class="::vm.getCategoryPriorityClass(category)"
+						class="priority"></i>
+					<i
+							ng-class="::vm.getCategoryCoachingClass(category)"
+							class="coaching fa fa-lg"></i>
+				</section>
+				<h2>{{category.name}}</h2>
+				<section class="stats">
+					<i
+							ng-if="::category.numPlannedActions"
+							class="fa fa-briefcase">: {{::category.numPlannedActions}}</i>
+					<i
+							ng-if="::category.numReadyActions"
+							class="ion-clipboard">: {{::category.numReadyActions}}</i>
+					<i
+							ng-if="::category.numInProgressActions"
+							class="ion-hammer">: {{::category.numInProgressActions}}</i>
+				</section>
+
+				<i class="icon ion-chevron-right icon-accessory"></i>
+
+				<ion-option-button class="button-assertive" ng-click="vm.listActions(category)">
+					Actions
+				</ion-option-button>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

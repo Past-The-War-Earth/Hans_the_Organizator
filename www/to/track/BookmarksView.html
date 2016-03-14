@@ -1,0 +1,173 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+	<link rel="stylesheet" href="to/common/sort/ListStyles.css">
+	<style>
+		div[class~="bar-subheader"] > button {
+			width: 44px;
+		}
+
+		.item-delete .button.icon {
+			color: #34495e;
+			font-weight: normal;
+		}
+
+		.item-icon-right section {
+			display: block;
+		}
+
+		.item-icon-right section h2 {
+			display: inline-block;
+		}
+
+		tr {
+			height: 20px;
+		}
+
+		table.filter > tbody > tr {
+			height: 30px;
+		}
+
+		table.filter > tbody > tr > td {
+			padding-top: 10px;
+			padding-right: 10px;
+			vertical-align: middle;
+			white-space: normal;
+		}
+		.bar-subheader {
+			border-color: #ff9d8d;
+		}
+		.content .item {
+			border-color: #ff9d8d;
+		}
+		.item-icon-right .icon-accessory {
+			color: #ff9d8d;
+		}
+		.eisenhower-filter td:last-child{
+			padding-left: 10px;
+		}
+	</style>
+	<!-- Pick a bookmark in this view -->
+	<div class="bar bar-subheader">
+		<button
+				class="org-mid-button left-button-2"
+				ng-click="vm.toggleDelete()"
+				>
+			<i
+					class="fa fa-trash-o fa-lg"
+					></i>
+		</button>
+		<div>
+			<input
+					ng-model="searchText"
+					type="search"
+					placeholder="Search Bookmarks"
+					>
+		</div>
+		<button
+				class="org-mid-button left-button-2"
+				ng-click="vm.toggleReorder()"
+				>
+			<i
+					class="fa fa-reorder fa-lg"
+					ng-class="vm.getToggleReorderIcon()"
+					></i>
+		</button>
+	</div>
+	<ion-content class="has-header content">
+		<div class="under-subheader"></div>
+		<ion-list show-delete="vm.showDelete" show-reorder="vm.showReorder">
+			<ion-item class="item-remove-animate item-icon-right"
+			          ng-click="vm.goToBookmark(bookmark)"
+			          ng-repeat="bookmark in vm.bookmarks track by bookmark.dbBookmark._id | filter: searchText"
+			          type="item-text-wrap">
+				<ion-reorder-button class="ion-navicon"
+				                    on-reorder="vm.moveABookmark(bookmark, $fromIndex, $toIndex)"></ion-reorder-button>
+
+				<table class="filter">
+					<tbody>
+					<tr>
+						<td></td>
+						<td
+								ng-bind-html="::vm.getBookmarkViewName(bookmark)"
+								></td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasEisenhowerFilter"
+							>
+						<td>
+							<i class="fa fa-compass fa-lg"></i>
+						</td>
+						<td
+								ng-bind-html="::vm.getTrackingDetails(bookmark)"
+								>
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasKanbanPlannedFilter"
+							>
+						<td>
+							<i class="fa fa-briefcase fa-lg"></i>
+						</td>
+						<td>
+							In Plan Actions
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasKanbanReadyFilter"
+							>
+						<td>
+							<i class="ion-clipboard fa-lg"></i>
+						</td>
+						<td>
+							In Ready Actions
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasKanbanInProgressFilter"
+							>
+						<td>
+							<i class="ion-hammer fa-lg"></i>
+						</td>
+						<td>
+							In Doing Actions
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasKanbanRecentlyDoneFilter"
+							>
+						<td>
+							<i class="ion-checkmark-round fa-lg"></i>
+						</td>
+						<td>
+							In (Recently) Done Actions
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasCategoryFilter"
+							>
+						<td>
+							<i class="fa fa-folder-open fa-lg"></i>
+						</td>
+						<td>
+							{{::bookmark.category.name}}
+						</td>
+					</tr>
+					<tr
+							ng-if="::bookmark.dbBookmark.hasMotivationFilter"
+							>
+						<td>
+							<i class="fa fa-dot-circle-o fa-lg"></i>
+						</td>
+						<td>
+							{{::bookmark.motivation.description}}
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<i class="icon ion-chevron-right icon-accessory"></i>
+
+				<ion-delete-button class="fa fa-trash-o"
+				                   ng-click="vm.deleteABookmark(bookmark)">
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

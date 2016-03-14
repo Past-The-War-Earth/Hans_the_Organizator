@@ -1,0 +1,248 @@
+<ion-view view-title="{{::vm.viewTitle}}">
+  <style>
+    .selected-state {
+      background-color: white;
+      color: #34495e;
+    }
+
+    .bar-subheader {
+      border-color: #6fcfff;
+    }
+
+    nav.kanban {
+      height: 100%;
+      padding: 0px;
+    }
+
+    nav.kanban > div {
+      height: 100%;
+      padding: 0px;
+      padding-left: 1px;
+      padding-right: 1px;
+    }
+
+    nav.kanban > div > div {
+      text-align: center;
+      padding-bottom: 7px;
+      padding-top: 7px;
+      font-weight: bold;
+    }
+
+    .item {
+      white-space: normal;
+    }
+
+    .bar {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .col {
+      padding: 2px;
+    }
+
+    .row {
+      padding: 0px;
+    }
+
+    .col .org-button {
+      cursor: pointer;
+    }
+
+    .col .org-button i {
+      padding-right: 5px;
+    }
+
+    /* FIXME NEXT - Track for Recently done
+        */
+    .content .item {
+      border-color: #6fcfff
+    }
+
+    svg {
+      z-index: 100;
+      position: absolute;
+    }
+
+    .selected-action {
+      /*stroke-width: 3px;*/
+      /*stroke-dasharray: 5,5;*/
+      /*fill: #1abc9c;*/
+      /*stroke: #1abc9c !important;*/
+      stroke-width: 5px !important;
+    }
+
+    .planned-action {
+      stroke: #8e44ad;
+      stroke-width: 3px;
+      /*stroke-dasharray: 6,6;*/
+    }
+
+    .ready-action {
+      stroke: #27ae60;
+      stroke-width: 3px;
+      /*stroke-dasharray: 6,6;*/
+    }
+
+    .in-progress-action {
+      stroke: #f1c40f;
+      stroke-width: 3px;
+      /*stroke-dasharray: 6,6;*/
+    }
+
+    .recently-done-action {
+      stroke: #e74c3c;
+      stroke-width: 3px;
+    }
+
+    .row.state-navigation {
+      margin-top: 5px;
+    }
+
+    .action-listing {
+    }
+
+  </style>
+  <div class="bar bar-subheader">
+    <nav class="kanban row">
+      <div
+        class="col"
+      >
+        <div
+          class="left-side-button org-button"
+          ng-class="vm.getSelectedStateClass(1)"
+          ng-click="vm.onStateClick(1)"
+        >
+
+          <i
+            class="ion-clipboard fa-lg"></i>
+          Ready
+        </div>
+      </div>
+      <div
+        class="col"
+      >
+        <div
+          class="org-button"
+          ng-class="vm.getSelectedStateClass(2)"
+          ng-click="vm.onStateClick(2)"
+        >
+          <i
+            class="ion-hammer fa-lg"></i>
+          Doing
+        </div>
+      </div>
+      <div
+        class="col"
+      >
+        <div
+          class="right-side-button org-button"
+          ng-class="vm.getSelectedStateClass(3)"
+          ng-click="vm.onStateClick(3)"
+        >
+          <i
+            class="ion-checkmark-round fa-lg"
+          ></i>
+          Done
+        </div>
+      </div>
+    </nav>
+    <div
+      class="row state-navigation"
+      ng-if="vm.showStateNavigation"
+    >
+      <button
+        class="col button button-positive"
+        ng-click="vm.viewMotivations()"
+      >
+        Reasons
+      </button>
+      <button
+        class="col button button-positive"
+        ng-click="vm.viewCategories()"
+      >
+        Categories
+      </button>
+      <button
+        class="col button button-positive"
+        ng-click="vm.viewEisenhower()"
+      >
+        Track
+      </button>
+    </div>
+    <section
+      class="action-listing"
+      ng-if="vm.selectedAction"
+      ng-include="'to/act/ActionListFragment.html'"
+    ></section>
+  </div>
+  <ion-content class="has-header content">
+    <svg
+      width="100%"
+      height="100%"
+      style="top: {{vm.svgTopPosition}}px;"
+      version="1.0"
+      xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <line
+          ng-class="connection.classes"
+          ng-repeat="connection in vm.allConnections"
+          x1="{{::connection.fromAction.x}}"
+          x2="{{::connection.toAction.x}}"
+          y1="{{::connection.fromAction.y}}"
+          y2="{{::connection.toAction.y}}"
+        />
+        <circle
+          actionId="{{::actionRendering.action._id}}"
+          ng-class="actionRendering.classes"
+          fill="#{{::actionRendering.color}}"
+          ng-click="vm.onActionRenderingClick(actionRendering)"
+          ng-repeat="actionRendering in vm.allRenderedActions"
+          r="{{::actionRendering.radius}}"
+          transform="{{::actionRendering.getTransform()}}"
+        ></circle>
+      </g>
+    </svg>
+    <div
+      class="background"
+      style="height: {{vm.chartHeight}}px;"
+    ></div>
+    <!--
+      <div class="row">
+          <div class="col">
+            <ul class="list">
+              <li
+                class="item"
+                ng-repeat="readyAction in vm.readyActions track by readyAction._id"
+                ng-click="vm.onReadyClick(readyAction)"
+              >
+                {{readyAction.phrase}}
+              </li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="list">
+              <li
+                class="item"
+                ng-repeat="inProgressAction in vm.inProgressActions track by inProgressAction._id"
+                ng-click="vm.onInProgressClick(inProgressAction)"
+              >
+                {{inProgressAction.phrase}}
+              </li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="list">
+              <li
+                class="item"
+                ng-repeat="recentlyDoneAction in vm.recentlyDoneActions track by recentlyDoneAction._id"
+                ng-click="vm.onRecentlyDoneClick(recentlyDoneAction)"
+              >
+                {{recentlyDoneAction.phrase}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        -->
+  </ion-content>
+</ion-view>

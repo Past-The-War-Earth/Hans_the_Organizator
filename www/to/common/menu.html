@@ -1,0 +1,269 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <style>
+    #info-button {
+      padding-top: 4px;
+    }
+
+    .app-title {
+      background-color: #2c3e50;
+    }
+
+    .app-title h1 {
+      color: white;
+    }
+
+    #application-menu .item {
+      text-align: left;
+      margin-left: 20px;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+
+    #application-menu i {
+      width: 30px;
+      text-align: center;
+      margin-right: 10px;
+      border-radius: 25px;
+      margin-left: -2px;
+    }
+
+    #filter-indicators {
+      padding: 7px;
+      padding-top: 6px;
+      margin-right: 5px;
+    }
+
+    #filter-indicators i {
+      padding: 3px;
+    }
+
+    #filter-bookmarked {
+      position: absolute;
+      left: 1px;
+      top: -5px;
+    }
+
+    #application-menu a.item-content {
+      background-color: #34495e;
+      padding: 0px;
+    }
+
+    #application-menu .fa {
+      padding: 16px;
+      padding-right: 33px;
+      pading-left: 15px;
+    }
+
+    #application-menu .fa.fa-briefcase {
+      padding-left: 15px;
+    }
+
+    #application-menu a.item-content div {
+      color: white;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    #application-menu .fa.fa-life-ring {
+      /*padding-left: 12px;*/
+    }
+
+    #application-menu .nav-border {
+      border-width: 1px;
+    }
+
+    .menu-left {
+      background-color: #2c3e50;
+    }
+
+    .header-bar {
+      border-color: #b2b2b2;
+    }
+
+    .header-bar > .nav:first-child {
+      float: right;
+    }
+
+    .header-bar > .nav:last-child {
+      float: left;
+    }
+
+    .header-bar section {
+      display: inline-block;
+    }
+
+    .view-title {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .header-content-right {
+      position: absolute;
+      right: 5px;
+    }
+
+    .go-to-menu-button.hide {
+      display: inline-block;
+    }
+
+    .org-back-button {
+      height: 34px;
+      width: 34px;
+      color: white;
+      display: inline-block;
+      padding-top: 2px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    h1 i {
+      float: left;
+      margin-left: 25px;
+      margin-right: 25px;
+      margin-top: 15px;
+    }
+
+
+  </style>
+  <ion-side-menu-content>
+    <ion-header-bar class="header-bar">
+      <!--
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+-->
+      <nav>
+        <button class="go-to-menu-button button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+        <nav
+          class="org-back-button"
+          ng-click="vm.goBack()">
+          <i class="ion-arrow-left-a fa-2x"></i>
+        </nav>
+      </nav>
+
+      <section class="view-title">Title</section>
+
+      <nav class="header-content-right">
+        <section
+          class="org-button"
+          id="filter-indicators"
+          ng-show="vm.bookmark.hasFilters"
+          ng-click="vm.modifyFilters()"
+        >
+          <i
+            class="fa fa-bookmark-o"
+            id="filter-bookmarked"
+            ng-show="vm.bookmarkSaved"
+          ></i>
+          <i
+            ng-show="vm.bookmark.hasKanbanPlannedFilter"
+            class="fa fa-briefcase fa-lg"></i>
+          <i
+            ng-show="vm.bookmark.hasKanbanReadyFilter"
+            class="ion-clipboard fa-lg"></i>
+          <i
+            ng-show="vm.bookmark.hasKanbanInProgressFilter"
+            class="ion-hammer fa-lg"></i>
+          <i
+            class="ion-checkmark-round fa-lg"
+            ng-show="vm.bookmark.hasKanbanRecentlyDoneFilter"
+          ></i>
+          <i
+            class="fa fa-compass fa-lg"
+            ng-show="vm.bookmark.hasEisenhowerFilter"
+          ></i>
+          <i
+            class="fa fa-folder-open-o fa-lg"
+            ng-show="vm.bookmark.hasCategoryFilter"
+          ></i>
+          <i
+            class="fa fa-dot-circle-o fa-lg"
+            ng-show="vm.bookmark.hasMotivationFilter"
+          ></i>
+        </section>
+        <button
+          id="info-button"
+          class="org-mid-button button"
+          ng-click="vm.getInfo()"
+        >
+          <i class="fa fa-info fa-2x"></i>
+        </button>
+      </nav>
+    </ion-header-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="app-title">
+      <h1 class="title"><i
+        class="fa fa-lg"
+        ng-class="vm.getUpdateIconClass()"
+        ng-click="vm.onUpdateButtonClick()"
+      ></i>Hans</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list id="application-menu">
+        <ion-item nav-clear menu-close href="#/to/plans" class="border-plan nav-border">
+          <i class="background-plan fa fa-briefcase fa-lg"></i>
+
+          <div>Plan</div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/kanban/5/5/0/0" class="border-act nav-border">
+          <i class="background-act fa fa-check-square-o fa-lg"></i>
+          <div>
+            Progress
+          </div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/eisenhower/5/5/5/0/0" class="border-track nav-border">
+          <i class="background-track fa fa-compass fa-lg"></i>
+
+          <div>
+            Track
+          </div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/motivations/5/5/5/0" class="border-reasons nav-border">
+          <i class="background-reasons fa fa-dot-circle-o fa-lg"></i>
+
+          <div>
+            Reasons
+          </div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/categories/5/5/5/0" class="border-categories nav-border">
+          <i class="background-categories fa fa-folder-open-o fa-lg"></i>
+
+          <div>
+            Categories
+          </div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/bookmarks" class="border-bookmarks nav-border">
+          <i class="background-bookmarks fa fa-bookmark-o fa-lg"></i>
+
+          <div>Bookmarks</div>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/to/advice" class="border-archive nav-border">
+          <i class="background-advise fa fa-life-ring fa-lg"></i>
+
+          <div>
+            Advice
+          </div>
+        </ion-item>
+
+        <ion-item nav-clear menu-close href="#/to/archive" class="border-settings nav-border">
+          <i class="background-archive fa fa-archive fa-lg"></i>
+
+          <div>
+            Archive
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

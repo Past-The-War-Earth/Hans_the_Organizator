@@ -1,5 +1,5 @@
 # Hans the Organization
 
-Hans the Organization was the first implemented PTWE App. Humorously named it was intended to be a family organizer (that was was "going to be Huge!"). Now it has found it's "home" and in the also very important [NLNM simulations](https://github.com/Past-The-War-Earth/NLNM-combat-simulation/issues/1).
+Hans the Organization was the first implemented PTWE App. Humorously named it was intended to be a family organizer (that was was "going to be [Huge](https://github.com/Data-Independence-Network/trunk-core/blob/main/docs/History_Drivers_and_Overview.md)!" - I didn't "sell out" and no thoughts of it's even more important NLNM purpose could have been present anyway). Now it has found it's "home" and in the also very important [NLNM simulations](https://github.com/Past-The-War-Earth/NLNM-combat-simulation/issues/1).
 
 The original idea in it is "gravity balls" - color and size coded (Eithnhower Matrix based) circles that gravitationally fall together, with biggest tasks coming in first in the middle.  This is a great intuitive AR heads up display for NLNM commanders that can re-assemble every time there is a change in task composition, importance or urgency.
